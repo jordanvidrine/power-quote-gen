@@ -49,23 +49,20 @@ class App extends Component {
 
   formValidator(){
 
-    let customerValidationObject = {}
+    let needsToBeCorrected = [];
+
     for (let info in this.state.customerInfo) {
       if (info === 'email') {
-        customerValidationObject[info] = validator.validate(this.state.customerInfo[info])
+        if (!validator.validate(this.state.customerInfo[info])) {
+          needsToBeCorrected.push(info);
+        }
       } else if (info === 'isValid') {
-        } else {
-        customerValidationObject[info] = (this.state.customerInfo[info] !== '')
+      } else {
+        if (this.state.customerInfo[info] === '')
+          needsToBeCorrected.push(info)
         }
       }
 
-    let needsToBeCorrected = [];
-
-    for (let key in customerValidationObject) {
-      if (!customerValidationObject[key]) {
-        needsToBeCorrected.push(key)
-      }
-    }
     if (needsToBeCorrected.length === 0) {
       this.setState({
         ...this.state,
