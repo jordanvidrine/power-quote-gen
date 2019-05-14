@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import CustomerInfo from './CustomerInfo'
+import CustomerInfoForm from './CustomerInfoForm'
+import CustomerInfoReceived from './CustomerInfoReceived'
 import './App.css';
 
 var validator = require("email-validator");
@@ -71,6 +72,7 @@ class App extends Component {
           needsToBeCorrected,
           isValid: true,
         }})
+
       } else if (needsToBeCorrected.length !== 0) {
         this.setState({
           ...this.state,
@@ -99,11 +101,14 @@ class App extends Component {
   return (
     <div className="App">
     <h1>Quote Generation App</h1>
-    <CustomerInfo
-      handleChange={this.handleChange}
-      customerInfo={this.state.customerInfo}
-      formValidator={this.formValidator}
-    />
+    {this.state.customerInfo.isValid ?
+      <CustomerInfoReceived customerInfo={this.state.customerInfo} /> :
+      <CustomerInfoForm
+        handleChange={this.handleChange}
+        customerInfo={this.state.customerInfo}
+        formValidator={this.formValidator}
+      />
+    }
     <p className='warning'>
       {warningError}
     </p>

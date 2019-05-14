@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class CustomerInfo extends Component {
+class CustomerInfoForm extends Component {
   constructor(props){
     super(props)
   }
@@ -110,4 +110,4 @@ class CustomerInfo extends Component {
   }
 }
 
-export default CustomerInfo;
+export default CustomerInfoForm;
