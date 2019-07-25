@@ -14,7 +14,6 @@ class App extends Component {
         firstName: '',
         lastName: '',
         phone: '',
-        email: '',
         address: '',
         state: 'LA',
         zip: '',
@@ -38,26 +37,12 @@ class App extends Component {
     })
   }
 
-  emailTester() {
-    let emailToTest = document.getElementById("emailTest")
-    console.log(emailToTest.value)
-    if (validator.validate(emailToTest.value)) {
-      console.log('Email is good')
-    } else {
-      console.log('Email is bad')
-    }
-  }
-
   formValidator(){
 
     let needsToBeCorrected = [];
 
     for (let info in this.state.customerInfo) {
-      if (info === 'email') {
-        if (!validator.validate(this.state.customerInfo[info])) {
-          needsToBeCorrected.push(info);
-        }
-      } else if (info === 'isValid') {
+      if (info === 'isValid') {
       } else {
         if (this.state.customerInfo[info] === '')
           needsToBeCorrected.push(info)
